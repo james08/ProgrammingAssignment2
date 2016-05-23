@@ -22,10 +22,19 @@ makeCacheMatrix <- function(x = matrix()) {
 ## caching the inverse.
 
 cacheSolve <- function(x, ...) {
+  ## Check if inverse has already been
+  ## calculated
   if(is.null(x$getInverse())) {
     print("calculating inverse...")
     i <- x$get()
     x$setInverse(solve(i))
   }
+  ## Return the inverse
   x$getInverse()
 }
+
+## Uncomment the below to test
+#m <- matrix(1:4,2,2)
+#mcm <- makeCacheMatrix(m)
+#cacheSolve(mcm)
+#cacheSolve(mcm)
